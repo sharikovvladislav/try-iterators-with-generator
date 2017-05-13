@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <title>Test</title>
+</head>
+
+<body>
+    Test iterator
+    <script>
+        const makeIterator = function () {
+            let nextIndex = 0;
+
+            const next = () => {
+                if (nextIndex < this.collection.length) {
+                    const value = this.collection[nextIndex++];
+                    return { value, done: false };
+                }
+                return { done: true };
+            };
+            return { next };
+        };
+
+        const obj = {
+            collection: ['yo', 'ya'],
+            [Symbol.iterator]: makeIterator,
+        };
+
+        for (const v of obj) {
+            console.log(v);
+        }
+    </script>
+</body>
+
+</html>
