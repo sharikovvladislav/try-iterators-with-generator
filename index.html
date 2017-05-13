@@ -7,17 +7,10 @@
 <body>
     Test iterator
     <script>
-        const makeIterator = function () {
-            let nextIndex = 0;
-
-            const next = () => {
-                if (nextIndex < this.collection.length) {
-                    const value = this.collection[nextIndex++];
-                    return { value, done: false };
-                }
-                return { done: true };
-            };
-            return { next };
+        const makeIterator = function* () {
+            for (const value of this.collection) {
+                yield value;
+            }
         };
 
         const obj = {
